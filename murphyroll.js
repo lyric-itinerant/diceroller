@@ -77,7 +77,6 @@ function singleroll(totalrolls) {
         println("roll successes: " + successes);
         println("");
         
-        dicepool=16;
         totalsuccesses+=successes;
         successes=0;
         nines=0;
