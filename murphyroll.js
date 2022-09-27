@@ -2,13 +2,14 @@
 science roll 16 dice, 8/9/10 are successes, 9s and 10s reroll
 and it's rote every time */
 
-let dicepool, successes, rolldie, nines, tens, currentdie, totalrolls;
+let dicepool, successes, rolldie, nines, tens, currentdie, totalrolls, totalsuccesses;
     dicepool=16;
     successes=0;
+    totalsuccesses=0;
     nines=0;
     tens=0;
-    //TODO: Change totalrolls to the number of times you want to roll
-    totalrolls=2;
+    //HEYYOU: Change totalrolls to the number of times you want to roll
+    totalrolls=3;
 
     //this rolls dice and records successes and nines and tens for later rerolling
     //0s represent tens, like on a d10
@@ -62,21 +63,28 @@ function tensexplode() {
 
 //TODO: turn this into something that will reroll based on totalrolls input
 function singleroll(totalrolls) {
-    println("dicepool: " + dicepool + " dice");
-
-    println("rollthembones:");
-    rollthembones(dicepool);  //rolls the dice
+    println("Total Rolls: " + totalrolls);
+    while (totalrolls > 0) { 
+        println("dicepool: " + dicepool + " dice");
     
-    println("tens: " + tens + " successes: " + successes);
-    
-    println("rote action:"); 
-    roteaction(); //rote action
-    println("tens: " + tens + " successes: " + successes);
-    
-    //TODO: Grab ninesandtens explode because doing them separately might not work actually
-    println("tens explode");
-    tensexplode(); //tens explode
-    println("nines explode");
-    ninesexplode(); //nines explode
-    println("Total successes: " + successes);
+        println("rollthembones:");
+        rollthembones(dicepool);  //rolls the dice
+        roteaction(); //rote action
+        
+        println("dice explosion time");
+        tensexplode(); //tens explode
+        ninesexplode(); //nines explode
+        println("roll successes: " + successes);
+        println("");
+        
+        dicepool=16;
+        totalsuccesses+=successes;
+        successes=0;
+        nines=0;
+        tens=0;
+        totalrolls = totalrolls-1
+    }
 }
+
+singleroll(totalrolls);
+println("Total Successes: " + totalsuccesses);
