@@ -61,7 +61,7 @@ function tensexplode() {
         }
 }
 
-//TODO: turn this into something that will reroll based on totalrolls input
+//rolls based on totalrolls input
 function singleroll(totalrolls) {
     println("Total Rolls: " + totalrolls);
     while (totalrolls > 0) { 
